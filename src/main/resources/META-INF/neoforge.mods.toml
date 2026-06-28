@@ -42,11 +42,11 @@ displayName="${mod_name}" #mandatory
 #credits="" #optional
 
 # The authors of the mod, displayed in the mod UI (optional)
-#authors=""
+authors="XtraStudios"
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Example mod description.
+A full game overhaul focused on adding more depth & features to Minecraft while staying true to the it's identity.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
