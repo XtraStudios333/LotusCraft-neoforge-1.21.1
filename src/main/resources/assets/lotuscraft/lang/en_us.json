@@ -1,12 +1,21 @@
 {
-  "item.lotuscraft.knapped_flint": "Knapped Flint",
-
   "block.lotuscraft.mollisol": "Mollisol",
   "block.lotuscraft.aridisol": "Aridisol",
   "block.lotuscraft.alfisol": "Alfisol",
   "block.lotuscraft.histosol": "Histosol",
 
+  "item.lotuscraft.twig": "Twig",
+  "item.lotuscraft.knapped_flint": "Knapped Flint",
+  "item.lotuscraft.flint_knife_head": "Flint Knife Head",
+  "item.lotuscraft.flint_hatchet_head": "Flint Hatchet Head",
+
+  "item.lotuscraft.flint_knife": "Flint Knife",
+  "item.lotuscraft.flint_hatchet": "Flint Hatchet",
+
   "creativetab.lotuscraft.lotuscraft_nature_tab": "LotusCraft: Nature",
-  "creativetab.lotuscraft.lotuscraft_materials_tab": "LotusCraft: Materials"
+  "creativetab.lotuscraft.lotuscraft_materials_tab": "LotusCraft: Materials",
+  "creativetab.lotuscraft.lotuscraft_utility_tab": "LotusCraft: Utility",
+
+  "subtitles.lotuscraft.flint_knap": "Flint knapped"
 
 }

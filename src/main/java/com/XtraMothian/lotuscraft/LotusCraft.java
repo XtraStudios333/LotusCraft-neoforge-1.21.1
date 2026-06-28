@@ -1,12 +1,11 @@
 package com.XtraMothian.lotuscraft;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
+import com.XtraMothian.lotuscraft.event.FlintKnappingEvent; // Added import for your new event handler
 import com.XtraMothian.lotuscraft.item.ModCreativeModeTabs;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import org.slf4j.Logger;
-
 import com.mojang.logging.LogUtils;
-
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -39,7 +38,6 @@ public class LotusCraft {
     public static final String MOD_ID = "lotuscraft";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public LotusCraft(IEventBus modEventBus, ModContainer modContainer) {
@@ -51,8 +49,10 @@ public class LotusCraft {
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
-        ModCreativeModeTabs.register(modEventBus);
+        // Highly recommended fix: Register the static flint knapping event handler class
+        NeoForge.EVENT_BUS.register(FlintKnappingEvent.class);
 
+        ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
@@ -64,18 +64,15 @@ public class LotusCraft {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
     }
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-
     }
 }

@@ -12,6 +12,19 @@ public class ModItems {
     // Crafting Items - Basic
     public static final DeferredItem<Item> KNAPPED_FLINT = ITEMS.register("knapped_flint",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TWIG = ITEMS.register("twig",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FLINT_KNIFE_HEAD = ITEMS.register("flint_knife_head",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FLINT_HATCHET_HEAD = ITEMS.register("flint_hatchet_head",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FLINT_KNIFE = ITEMS.register("flint_knife",
+            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> FLINT_HATCHET = ITEMS.register("flint_hatchet",
+            () -> new Item(new Item.Properties()));
+
+
+    // Edited Vanilla Items
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

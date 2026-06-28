@@ -32,7 +32,20 @@ public class ModCreativeModeTabs {
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(LotusCraft.MOD_ID, "lotuscraft_nature_tab"))
                     .title(Component.translatable("creativetab.lotuscraft.lotuscraft_materials_tab"))
                     .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.TWIG);
                         output.accept(ModItems.KNAPPED_FLINT);
+                        output.accept(ModItems.FLINT_KNIFE_HEAD);
+                        output.accept(ModItems.FLINT_HATCHET_HEAD);
+                    })
+                    .build());
+
+    public static final Supplier<CreativeModeTab> LOTUSCRAFT_UTILITY_TAB = CREATIVE_MODE_TAB.register("lotuscraft_utility_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.FLINT_KNIFE.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(LotusCraft.MOD_ID, "lotuscraft_materials_tab"))
+                    .title(Component.translatable("creativetab.lotuscraft.lotuscraft_utility_tab"))
+                    .displayItems((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.FLINT_KNIFE);
+                        output.accept(ModItems.FLINT_HATCHET);
                     })
                     .build());
 
