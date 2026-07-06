@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "lotuscraft:mollisol_grass",
+    "lotuscraft:aridisol_grass",
+    "lotuscraft:alfisol_grass",
+    "lotuscraft:histosol_grass",
+    "lotuscraft:mollisol",
+    "lotuscraft:aridisol",
+    "lotuscraft:alfisol",
+    "lotuscraft:histosol"
+  ]
+}

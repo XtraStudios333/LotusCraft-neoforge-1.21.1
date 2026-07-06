@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "D": {
+      "item": "lotuscraft:flint_hatchet_head"
+    },
+    "|": {
+      "item": "lotuscraft:twig"
+    }
+  },
+  "pattern": [
+    "D",
+    "|"
+  ],
+  "result": {
+    "count": 1,
+    "id": "lotuscraft:flint_hatchet"
+  }
+}

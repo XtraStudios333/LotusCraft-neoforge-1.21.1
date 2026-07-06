@@ -1,7 +1,9 @@
 package com.XtraMothian.lotuscraft.item;
 
 import com.XtraMothian.lotuscraft.LotusCraft;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -18,10 +20,14 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> FLINT_HATCHET_HEAD = ITEMS.register("flint_hatchet_head",
             () -> new Item(new Item.Properties()));
+
+    // Tools
     public static final DeferredItem<Item> FLINT_KNIFE = ITEMS.register("flint_knife",
-            () -> new Item(new Item.Properties()));
+            () -> new SwordItem(ModToolTiers.FLINT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(ModToolTiers.FLINT, 1, -1.4f))));
     public static final DeferredItem<Item> FLINT_HATCHET = ITEMS.register("flint_hatchet",
-            () -> new Item(new Item.Properties()));
+            () -> new AxeItem(ModToolTiers.FLINT, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(ModToolTiers.FLINT, 2, -2.5f))));
 
 
     // Edited Vanilla Items

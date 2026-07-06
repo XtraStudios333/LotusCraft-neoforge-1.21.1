@@ -1,0 +1,69 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "top": "lotuscraft:block/grass_top",
+    "side": "lotuscraft:block/mollisol_grass",
+    "bottom": "lotuscraft:block/mollisol",
+    "overlay": "lotuscraft:block/grass_side_overlay"
+  },
+  "elements": [
+    {
+      "name": "base_block",
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#bottom"
+        },
+        "north": {
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "name": "grass_overlay",
+      "from": [-0.01, 0, -0.01],
+      "to": [16.01, 16, 16.01],
+      "faces": {
+        "north": {
+          "texture": "#overlay",
+          "tintindex": 0,
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#overlay",
+          "tintindex": 0,
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#overlay",
+          "tintindex": 0,
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#overlay",
+          "tintindex": 0,
+          "cullface": "east"
+        }
+      }
+    }
+  ]
+}

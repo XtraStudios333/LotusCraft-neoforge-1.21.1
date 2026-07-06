@@ -1,78 +1,66 @@
 package com.XtraMothian.lotuscraft;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
-import com.XtraMothian.lotuscraft.event.FlintKnappingEvent; // Added import for your new event handler
+import com.XtraMothian.lotuscraft.client.ClientEvents; // Import client color handler
+import com.XtraMothian.lotuscraft.event.FlintKnappingEvent;
 import com.XtraMothian.lotuscraft.item.ModCreativeModeTabs;
 import com.XtraMothian.lotuscraft.item.ModItems;
-import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MapColor;
+import net.neoforged.api.distmarker.Dist; // Added for side checking
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment; // Used to safely check sides
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(LotusCraft.MOD_ID)
 public class LotusCraft {
     public static final String MOD_ID = "lotuscraft";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    // The constructor for the mod class is the first code that is run when your mod is loaded.
-    // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
+    // Unified single constructor accepting both mod loaders
     public LotusCraft(IEventBus modEventBus, ModContainer modContainer) {
-        // Register the commonSetup method for modloading
+        // 1. Core Lifecycle Setup
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::addCreative);
 
-        // Register ourselves for server and other game events we are interested in.
-        // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
-        // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
-        NeoForge.EVENT_BUS.register(this);
-
-        // Highly recommended fix: Register the static flint knapping event handler class
-        NeoForge.EVENT_BUS.register(FlintKnappingEvent.class);
-
+        // 2. Mod Deferred Registries
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
-        // Register the item to a creative tab
-        modEventBus.addListener(this::addCreative);
+        // 3. Global Event Bus Registrations (Game Bus)
+        NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(FlintKnappingEvent.class);
 
-        // Register our mod's ModConfigSpec so that FML can create and load the config file for us
+        // 4. Config Registration
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+
+        // 5. Safe Client-Side Initialization
+        // In NeoForge 1.21.1, dist is an enum. Compare it to Dist.CLIENT.
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            modEventBus.addListener(ClientEvents::registerBlockColors);
+            modEventBus.addListener(ClientEvents::registerItemColors);
+        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+        // Setup code (e.g. packet registration) goes here
     }
 
-    // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        // Code to populate vanilla creative tabs goes here
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // Do something when the server starts
+        LOGGER.info("LotusCraft server starting...");
     }
 }

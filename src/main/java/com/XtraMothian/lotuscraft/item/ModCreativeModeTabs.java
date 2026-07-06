@@ -17,38 +17,48 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, LotusCraft.MOD_ID);
 
     public static final Supplier<CreativeModeTab> LOTUSCRAFT_NATURE_TAB = CREATIVE_MODE_TAB.register("lotuscraft_nature_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModBlocks.MOLLISOL.get()))
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModBlocks.MOLLISOL_GRASS.get().asItem()))
                     .title(Component.translatable("creativetab.lotuscraft.lotuscraft_nature_tab"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModBlocks.MOLLISOL);
-                        output.accept(ModBlocks.ARIDISOL);
-                        output.accept(ModBlocks.ALFISOL);
-                        output.accept(ModBlocks.HISTOSOL);
+                    .displayItems((params, output) -> {
+
+                        output.accept(new ItemStack(ModBlocks.MOLLISOL_GRASS.get()));
+                        output.accept(new ItemStack(ModBlocks.ARIDISOL_GRASS.get()));
+                        output.accept(new ItemStack(ModBlocks.ALFISOL_GRASS.get()));
+                        output.accept(new ItemStack(ModBlocks.HISTOSOL_GRASS.get()));
+
+                        output.accept(new ItemStack(ModBlocks.MOLLISOL.get()));
+                        output.accept(new ItemStack(ModBlocks.ARIDISOL.get()));
+                        output.accept(new ItemStack(ModBlocks.ALFISOL.get()));
+                        output.accept(new ItemStack(ModBlocks.HISTOSOL.get()));
                     })
                     .build());
 
     public static final Supplier<CreativeModeTab> LOTUSCRAFT_MATERIALS_TAB = CREATIVE_MODE_TAB.register("lotuscraft_materials_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.KNAPPED_FLINT.get()))
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModItems.KNAPPED_FLINT.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(LotusCraft.MOD_ID, "lotuscraft_nature_tab"))
                     .title(Component.translatable("creativetab.lotuscraft.lotuscraft_materials_tab"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.TWIG);
-                        output.accept(ModItems.KNAPPED_FLINT);
-                        output.accept(ModItems.FLINT_KNIFE_HEAD);
-                        output.accept(ModItems.FLINT_HATCHET_HEAD);
+                    .displayItems((params, output) -> {
+
+                        output.accept(new ItemStack(ModItems.TWIG.get()));
+                        output.accept(new ItemStack(ModItems.KNAPPED_FLINT.get()));
+                        output.accept(new ItemStack(ModItems.FLINT_KNIFE_HEAD.get()));
+                        output.accept(new ItemStack(ModItems.FLINT_HATCHET_HEAD.get()));
                     })
                     .build());
 
     public static final Supplier<CreativeModeTab> LOTUSCRAFT_UTILITY_TAB = CREATIVE_MODE_TAB.register("lotuscraft_utility_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.FLINT_KNIFE.get()))
+            () -> CreativeModeTab.builder()
+                    .icon(() -> new ItemStack(ModItems.FLINT_KNIFE.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(LotusCraft.MOD_ID, "lotuscraft_materials_tab"))
                     .title(Component.translatable("creativetab.lotuscraft.lotuscraft_utility_tab"))
-                    .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.FLINT_KNIFE);
-                        output.accept(ModItems.FLINT_HATCHET);
+                    .displayItems((params, output) -> {
+
+                        output.accept(new ItemStack(ModItems.FLINT_KNIFE.get()));
+                        output.accept(new ItemStack(ModItems.FLINT_HATCHET.get()));
                     })
                     .build());
-
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TAB.register(eventBus);

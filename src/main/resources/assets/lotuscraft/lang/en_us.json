@@ -4,6 +4,11 @@
   "block.lotuscraft.alfisol": "Alfisol",
   "block.lotuscraft.histosol": "Histosol",
 
+  "block.lotuscraft.mollisol_grass": "Mollisol Grass",
+  "block.lotuscraft.aridisol_grass": "Aridisol Grass",
+  "block.lotuscraft.alfisol_grass": "Alfisol Grass",
+  "block.lotuscraft.histosol_grass": "Histosol Grass",
+
   "item.lotuscraft.twig": "Twig",
   "item.lotuscraft.knapped_flint": "Knapped Flint",
   "item.lotuscraft.flint_knife_head": "Flint Knife Head",
@@ -14,8 +19,5 @@
 
   "creativetab.lotuscraft.lotuscraft_nature_tab": "LotusCraft: Nature",
   "creativetab.lotuscraft.lotuscraft_materials_tab": "LotusCraft: Materials",
-  "creativetab.lotuscraft.lotuscraft_utility_tab": "LotusCraft: Utility",
-
-  "subtitles.lotuscraft.flint_knap": "Flint knapped"
-
+  "creativetab.lotuscraft.lotuscraft_utility_tab": "LotusCraft: Utility"
 }
