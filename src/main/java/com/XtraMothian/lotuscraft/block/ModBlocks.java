@@ -1,6 +1,7 @@
 package com.XtraMothian.lotuscraft.block;
 
 import com.XtraMothian.lotuscraft.LotusCraft;
+import com.XtraMothian.lotuscraft.block.custom.CloversBlock;
 import com.XtraMothian.lotuscraft.block.custom.GrassSoilBlock;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -117,7 +118,8 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> CLOVERS =
             registerBlock("clovers",
-                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
+                    () -> new CloversBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
     //==================================================
     // Lookup Helpers
