@@ -27,15 +27,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MOLLISOL =
             registerBlock("mollisol",
                     () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-
     public static final DeferredBlock<Block> ARIDISOL =
             registerBlock("aridisol",
                     () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-
     public static final DeferredBlock<Block> ALFISOL =
             registerBlock("alfisol",
                     () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
-
     public static final DeferredBlock<Block> HISTOSOL =
             registerBlock("histosol",
                     () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIRT)));
@@ -48,21 +45,79 @@ public class ModBlocks {
             registerBlock("mollisol_grass",
                     () -> new GrassSoilBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
-
     public static final DeferredBlock<Block> ARIDISOL_GRASS =
             registerBlock("aridisol_grass",
                     () -> new GrassSoilBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
-
     public static final DeferredBlock<Block> ALFISOL_GRASS =
             registerBlock("alfisol_grass",
                     () -> new GrassSoilBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
-
     public static final DeferredBlock<Block> HISTOSOL_GRASS =
             registerBlock("histosol_grass",
                     () -> new GrassSoilBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.GRASS_BLOCK)));
+
+    //==================================================
+    // Stone Blocks
+    //==================================================
+
+    public static final DeferredBlock<Block> DACITE =
+            registerBlock("dacite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> RHYOLITE =
+            registerBlock("rhyolite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> ANDESITE =
+            registerBlock("andesite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> BASALT =
+            registerBlock("basalt",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> GRANITE =
+            registerBlock("granite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> DIORITE =
+            registerBlock("diorite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> GABBRO =
+            registerBlock("gabbro",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> PERIDOTITE =
+            registerBlock("peridotite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> GNEISS =
+            registerBlock("gneiss",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> MARBLE =
+            registerBlock("marble",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> SCHIST =
+            registerBlock("schist",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> SLATE =
+            registerBlock("slate",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> CHALK =
+            registerBlock("chalk",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> LIMESTONE =
+            registerBlock("limestone",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> DOLOMITE =
+            registerBlock("dolomite",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+    public static final DeferredBlock<Block> CHERT =
+            registerBlock("chert",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)));
+
+    //==================================================
+    // Plantlife
+    //==================================================
+
+    public static final DeferredBlock<Block> CLOVERS =
+            registerBlock("clovers",
+                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
     //==================================================
     // Lookup Helpers

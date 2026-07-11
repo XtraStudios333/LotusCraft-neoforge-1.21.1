@@ -31,6 +31,25 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.ARIDISOL.get()));
                         output.accept(new ItemStack(ModBlocks.ALFISOL.get()));
                         output.accept(new ItemStack(ModBlocks.HISTOSOL.get()));
+
+                        output.accept(new ItemStack(ModBlocks.DACITE.get()));
+                        output.accept(new ItemStack(ModBlocks.RHYOLITE.get()));
+                        output.accept(new ItemStack(ModBlocks.ANDESITE.get()));
+                        output.accept(new ItemStack(ModBlocks.BASALT.get()));
+                        output.accept(new ItemStack(ModBlocks.GRANITE.get()));
+                        output.accept(new ItemStack(ModBlocks.DIORITE.get()));
+                        output.accept(new ItemStack(ModBlocks.GABBRO.get()));
+                        output.accept(new ItemStack(ModBlocks.PERIDOTITE.get()));
+                        output.accept(new ItemStack(ModBlocks.GNEISS.get()));
+                        output.accept(new ItemStack(ModBlocks.MARBLE.get()));
+                        output.accept(new ItemStack(ModBlocks.SCHIST.get()));
+                        output.accept(new ItemStack(ModBlocks.SLATE.get()));
+                        output.accept(new ItemStack(ModBlocks.CHALK.get()));
+                        output.accept(new ItemStack(ModBlocks.LIMESTONE.get()));
+                        output.accept(new ItemStack(ModBlocks.DOLOMITE.get()));
+                        output.accept(new ItemStack(ModBlocks.CHERT.get()));
+
+                        output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
                     })
                     .build());
 

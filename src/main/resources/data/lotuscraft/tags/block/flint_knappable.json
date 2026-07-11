@@ -1,8 +1,21 @@
 {
   "replace": false,
   "values": [
-    "minecraft:stone",
-    "minecraft:dripstone_block",
-    "minecraft:blackstone"
+    "lotuscraft:dacite",
+    "lotuscraft:rhyolite",
+    "lotuscraft:andesite",
+    "lotuscraft:basalt",
+    "lotuscraft:granite",
+    "lotuscraft:diorite",
+    "lotuscraft:gabbro",
+    "lotuscraft:peridotite",
+    "lotuscraft:gneiss",
+    "lotuscraft:marble",
+    "lotuscraft:schist",
+    "lotuscraft:slate",
+    "lotuscraft:chalk",
+    "lotuscraft:limestone",
+    "lotuscraft:dolomite",
+    "lotuscraft:chert"
   ]
 }
