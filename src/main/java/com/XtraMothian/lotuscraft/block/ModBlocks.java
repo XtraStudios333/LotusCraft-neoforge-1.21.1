@@ -3,11 +3,14 @@ package com.XtraMothian.lotuscraft.block;
 import com.XtraMothian.lotuscraft.LotusCraft;
 import com.XtraMothian.lotuscraft.block.custom.CloversBlock;
 import com.XtraMothian.lotuscraft.block.custom.GrassSoilBlock;
+import com.XtraMothian.lotuscraft.block.custom.SargassumBlock;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.WaterlilyBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
@@ -121,6 +124,11 @@ public class ModBlocks {
                     () -> new CloversBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
+    public static final DeferredBlock<SargassumBlock> SARGASSUM =
+            registerBlock("sargassum",
+                    () -> new SargassumBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+
     //==================================================
     // Lookup Helpers
     //==================================================
@@ -180,8 +188,17 @@ public class ModBlocks {
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
 
-        ModItems.ITEMS.register(name,
-                () -> new BlockItem(block.get(), new Item.Properties()));
+        if ("sargassum".equals(name)) {
+            ModItems.ITEMS.register(name,
+                    () -> new PlaceOnWaterBlockItem(
+                            block.get(),
+                            new Item.Properties()));
+        } else {
+            ModItems.ITEMS.register(name,
+                    () -> new BlockItem(
+                            block.get(),
+                            new Item.Properties()));
+        }
     }
 
     public static void register(IEventBus eventBus) {
