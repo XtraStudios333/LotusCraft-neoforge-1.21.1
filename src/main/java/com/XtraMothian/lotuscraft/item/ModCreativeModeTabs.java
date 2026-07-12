@@ -49,7 +49,12 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.DOLOMITE.get()));
                         output.accept(new ItemStack(ModBlocks.CHERT.get()));
 
+                        output.accept(new ItemStack(ModBlocks.WHITE_ORCHID.get()));
+                        output.accept(new ItemStack(ModBlocks.PINK_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
+                        output.accept(new ItemStack(ModBlocks.CATTAIL.get()));
+                        output.accept(new ItemStack(ModBlocks.MILKWEED.get()));
+                        output.accept(new ItemStack(ModBlocks.PAPYRUS.get()));
                         output.accept(new ItemStack(ModBlocks.IVY.get()));
                         output.accept(new ItemStack(ModBlocks.SARGASSUM.get()));
                     })
@@ -64,6 +69,7 @@ public class ModCreativeModeTabs {
 
                         output.accept(new ItemStack(ModItems.TWIG.get()));
                         output.accept(new ItemStack(ModItems.KNAPPED_FLINT.get()));
+                        output.accept(new ItemStack(ModItems.SIMPLE_CORDAGE.get()));
                         output.accept(new ItemStack(ModItems.FLINT_KNIFE_HEAD.get()));
                         output.accept(new ItemStack(ModItems.FLINT_HATCHET_HEAD.get()));
                     })

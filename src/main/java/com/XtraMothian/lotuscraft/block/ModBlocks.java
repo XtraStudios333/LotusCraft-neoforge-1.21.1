@@ -2,6 +2,7 @@ package com.XtraMothian.lotuscraft.block;
 
 import com.XtraMothian.lotuscraft.LotusCraft;
 import com.XtraMothian.lotuscraft.block.custom.CloversBlock;
+import com.XtraMothian.lotuscraft.block.custom.FoliageBlock;
 import com.XtraMothian.lotuscraft.block.custom.GrassSoilBlock;
 import com.XtraMothian.lotuscraft.block.custom.SargassumBlock;
 import com.XtraMothian.lotuscraft.item.ModItems;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
@@ -117,10 +119,35 @@ public class ModBlocks {
     // Plantlife
     //==================================================
 
+    public static final DeferredBlock<Block> WHITE_ORCHID =
+            registerBlock("white_orchid",
+                    () -> new FoliageBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
+    public static final DeferredBlock<Block> PINK_ORCHID =
+            registerBlock("pink_orchid",
+                    () -> new FoliageBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
     public static final DeferredBlock<Block> CLOVERS =
             registerBlock("clovers",
                     () -> new CloversBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
+
+    public static final DeferredBlock<Block> CATTAIL =
+            registerBlock("cattail",
+                    () -> new FoliageBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
+    public static final DeferredBlock<Block> MILKWEED =
+            registerBlock("milkweed",
+                    () -> new FoliageBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+
+    public static final DeferredBlock<Block> PAPYRUS =
+            registerBlock("papyrus",
+                    () -> new FoliageBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
 
     public static final DeferredBlock<Block> IVY =
             registerBlock("ivy",

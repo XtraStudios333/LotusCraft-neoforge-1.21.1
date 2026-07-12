@@ -5,15 +5,13 @@
 ||| Foliage: |||
 || Ground ||
 | Standard |
-Milkweed (used to make simple cordage)
 Dry Foliage (grass, etc)
-Lavender
 
 | Flowers |
-Flowering Milkweed (used to make simple cordage)
 Orchids (other than blue)
 Purple & Red Lilacs
 Buttercup
+Lavender
 Foxglove
 (( Flower packing (small flowers can be packed together) ))
 
@@ -22,8 +20,6 @@ Laurel
 
 || Wetland ||
 Reeds
-Cattail (used to make simple cordage)
-Papyrus (used to make simple cordage)
 loosestrife
 
 || Crawling ||
@@ -36,3 +32,9 @@ Lotus
 Lily Pad Variants - Large, clustered, different types
 Duckweed
 Hornwort
+
+
+(semi-implemented)
+Milkweed (used to make simple cordage)
+Cattail (used to make simple cordage)
+Papyrus (used to make simple cordage)

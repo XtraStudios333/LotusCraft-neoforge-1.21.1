@@ -16,6 +16,8 @@ public class ModItems {
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> TWIG = ITEMS.register("twig",
             () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> SIMPLE_CORDAGE = ITEMS.register("simple_cordage",
+            () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> FLINT_KNIFE_HEAD = ITEMS.register("flint_knife_head",
             () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> FLINT_HATCHET_HEAD = ITEMS.register("flint_hatchet_head",
