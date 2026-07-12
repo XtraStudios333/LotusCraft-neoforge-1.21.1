@@ -1,12 +1,12 @@
 package com.XtraMothian.lotuscraft;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
-import com.XtraMothian.lotuscraft.client.ClientEvents; // Import client color handler
+import com.XtraMothian.lotuscraft.block.custom.ModBlockColors;
+import com.XtraMothian.lotuscraft.client.ClientModEvents; // Import client color handler
 import com.XtraMothian.lotuscraft.event.FlintKnappingEvent;
 import com.XtraMothian.lotuscraft.item.ModCreativeModeTabs;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import com.mojang.logging.LogUtils;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.neoforged.api.distmarker.Dist; // Added for side checking
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -46,8 +46,8 @@ public class LotusCraft {
         // 5. Safe Client-Side Initialization
         // In NeoForge 1.21.1, dist is an enum. Compare it to Dist.CLIENT.
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            modEventBus.addListener(ClientEvents::registerBlockColors);
-            modEventBus.addListener(ClientEvents::registerItemColors);
+            modEventBus.addListener(ClientModEvents::registerBlockColors);
+            modEventBus.addListener(ClientModEvents::registerItemColors);
         }
     }
 

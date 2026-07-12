@@ -50,6 +50,7 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.CHERT.get()));
 
                         output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
+                        output.accept(new ItemStack(ModBlocks.IVY.get()));
                         output.accept(new ItemStack(ModBlocks.SARGASSUM.get()));
                     })
                     .build());

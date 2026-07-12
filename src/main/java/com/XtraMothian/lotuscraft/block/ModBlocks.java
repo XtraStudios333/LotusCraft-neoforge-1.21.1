@@ -8,9 +8,7 @@ import com.XtraMothian.lotuscraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.WaterlilyBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
@@ -124,10 +122,16 @@ public class ModBlocks {
                     () -> new CloversBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
 
+    public static final DeferredBlock<Block> IVY =
+            registerBlock("ivy",
+                    () -> new VineBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
+
     public static final DeferredBlock<SargassumBlock> SARGASSUM =
             registerBlock("sargassum",
                     () -> new SargassumBlock(
-                            BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)));
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
+                                    .sound(SoundType.WET_GRASS)));
 
     //==================================================
     // Lookup Helpers

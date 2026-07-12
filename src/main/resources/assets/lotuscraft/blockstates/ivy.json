@@ -1,0 +1,40 @@
+{
+  "multipart": [
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "lotuscraft:block/ivy" }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": {
+        "model": "lotuscraft:block/ivy",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": {
+        "model": "lotuscraft:block/ivy",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": {
+        "model": "lotuscraft:block/ivy",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "up": "true" },
+      "apply": {
+        "model": "lotuscraft:block/ivy",
+        "x": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}
