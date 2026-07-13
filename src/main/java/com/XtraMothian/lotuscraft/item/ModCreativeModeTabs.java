@@ -51,6 +51,8 @@ public class ModCreativeModeTabs {
 
                         output.accept(new ItemStack(ModBlocks.WHITE_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PINK_ORCHID.get()));
+                        output.accept(new ItemStack(ModBlocks.PURPLE_LILAC.get()));
+                        output.accept(new ItemStack(ModBlocks.RED_LILAC.get()));
                         output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
                         output.accept(new ItemStack(ModBlocks.CATTAIL.get()));
                         output.accept(new ItemStack(ModBlocks.MILKWEED.get()));

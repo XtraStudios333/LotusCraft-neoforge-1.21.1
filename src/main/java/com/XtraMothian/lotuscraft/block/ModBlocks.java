@@ -1,18 +1,15 @@
 package com.XtraMothian.lotuscraft.block;
 
 import com.XtraMothian.lotuscraft.LotusCraft;
-import com.XtraMothian.lotuscraft.block.custom.CloversBlock;
-import com.XtraMothian.lotuscraft.block.custom.FoliageBlock;
-import com.XtraMothian.lotuscraft.block.custom.GrassSoilBlock;
-import com.XtraMothian.lotuscraft.block.custom.SargassumBlock;
+import com.XtraMothian.lotuscraft.block.custom.*;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -121,13 +118,33 @@ public class ModBlocks {
 
     public static final DeferredBlock<Block> WHITE_ORCHID =
             registerBlock("white_orchid",
-                    () -> new FoliageBlock(
-                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ORCHID)));
 
     public static final DeferredBlock<Block> PINK_ORCHID =
             registerBlock("pink_orchid",
-                    () -> new FoliageBlock(
-                            BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)));
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.BLUE_ORCHID)));
+
+    public static final DeferredBlock<Block> PURPLE_LILAC =
+            registerBlock("purple_lilac",
+                    () -> new TallFlowerBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.GRASS)
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)));
+
+    public static final DeferredBlock<Block> RED_LILAC =
+            registerBlock("red_lilac",
+                    () -> new TallFlowerBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.GRASS)
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)));
 
     public static final DeferredBlock<Block> CLOVERS =
             registerBlock("clovers",

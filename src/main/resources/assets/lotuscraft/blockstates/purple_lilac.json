@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "lotuscraft:block/purple_lilac_bottom"
+    },
+    "half=upper": {
+      "model": "lotuscraft:block/purple_lilac_top"
+    }
+  }
+}

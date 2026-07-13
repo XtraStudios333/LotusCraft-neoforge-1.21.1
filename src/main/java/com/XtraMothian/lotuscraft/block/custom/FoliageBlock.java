@@ -17,7 +17,7 @@ public class FoliageBlock extends BushBlock {
     }
 
     @Override
-    protected MapCodec<? extends BushBlock> codec() {
+    public MapCodec<? extends BushBlock> codec() {
         return CODEC;
     }
 
