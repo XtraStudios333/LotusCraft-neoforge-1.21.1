@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "lotuscraft:block/reeds_bottom"
+    },
+    "half=upper": {
+      "model": "lotuscraft:block/reeds_top"
+    }
+  }
+}

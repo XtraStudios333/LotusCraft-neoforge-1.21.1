@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "lotuscraft:block/laurel_bottom"
+    },
+    "half=upper": {
+      "model": "lotuscraft:block/laurel_top"
+    }
+  }
+}

@@ -53,11 +53,20 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.PINK_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PURPLE_LILAC.get()));
                         output.accept(new ItemStack(ModBlocks.RED_LILAC.get()));
+                        output.accept(new ItemStack(ModBlocks.BUTTERCUP.get()));
+                        output.accept(new ItemStack(ModBlocks.LAVENDER.get()));
+                        output.accept(new ItemStack(ModBlocks.WHITE_FOXGLOVE.get()));
+                        output.accept(new ItemStack(ModBlocks.BEIGE_FOXGLOVE.get()));
+                        output.accept(new ItemStack(ModBlocks.ORANGE_FOXGLOVE.get()));
+                        output.accept(new ItemStack(ModBlocks.PINK_FOXGLOVE.get()));
+                        output.accept(new ItemStack(ModBlocks.RED_FOXGLOVE.get()));
                         output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
+                        output.accept(new ItemStack(ModBlocks.LAUREL.get()));
                         output.accept(new ItemStack(ModBlocks.CATTAIL.get()));
                         output.accept(new ItemStack(ModBlocks.MILKWEED.get()));
                         output.accept(new ItemStack(ModBlocks.PAPYRUS.get()));
                         output.accept(new ItemStack(ModBlocks.IVY.get()));
+                        output.accept(new ItemStack(ModBlocks.REEDS.get()));
                         output.accept(new ItemStack(ModBlocks.SARGASSUM.get()));
                     })
                     .build());

@@ -146,10 +146,55 @@ public class ModBlocks {
                                     .sound(SoundType.GRASS)
                                     .offsetType(BlockBehaviour.OffsetType.XZ)));
 
+    public static final DeferredBlock<Block> BUTTERCUP =
+            registerBlock("buttercup",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> LAVENDER =
+            registerBlock("lavender",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> WHITE_FOXGLOVE =
+            registerBlock("white_foxglove",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> BEIGE_FOXGLOVE =
+            registerBlock("beige_foxglove",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> ORANGE_FOXGLOVE =
+            registerBlock("orange_foxglove",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> PINK_FOXGLOVE =
+            registerBlock("pink_foxglove",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
+    public static final DeferredBlock<Block> RED_FOXGLOVE =
+            registerBlock("red_foxglove",
+                    () -> new ModFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)));
+
     public static final DeferredBlock<Block> CLOVERS =
             registerBlock("clovers",
                     () -> new CloversBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.PINK_PETALS)));
+
+    public static final DeferredBlock<Block> LAUREL =
+            registerBlock("laurel",
+                    () -> new TallFlowerBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.GRASS)
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)));
 
     public static final DeferredBlock<Block> CATTAIL =
             registerBlock("cattail",
@@ -170,6 +215,16 @@ public class ModBlocks {
             registerBlock("ivy",
                     () -> new VineBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
+
+    public static final DeferredBlock<Block> REEDS =
+            registerBlock("reeds",
+                    () -> new TallSemiAquaticPlantBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.GRASS)
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)));
 
     public static final DeferredBlock<SargassumBlock> SARGASSUM =
             registerBlock("sargassum",

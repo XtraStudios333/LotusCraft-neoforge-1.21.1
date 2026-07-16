@@ -28,6 +28,7 @@ public class ClientModEvents {
                 ModBlocks.ALFISOL_GRASS.get(),
                 ModBlocks.HISTOSOL_GRASS.get(),
 
+                ModBlocks.LAUREL.get(),
                 ModBlocks.IVY.get()
         );
     }
