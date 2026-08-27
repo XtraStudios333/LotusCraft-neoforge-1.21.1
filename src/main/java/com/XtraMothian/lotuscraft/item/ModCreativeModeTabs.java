@@ -67,6 +67,8 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.PAPYRUS.get()));
                         output.accept(new ItemStack(ModBlocks.IVY.get()));
                         output.accept(new ItemStack(ModBlocks.REEDS.get()));
+                        output.accept(new ItemStack(ModBlocks.LILYPAD_CLUSTER.get()));
+                        output.accept(new ItemStack(ModBlocks.LARGE_LILY_PAD.get()));
                         output.accept(new ItemStack(ModBlocks.SARGASSUM.get()));
                     })
                     .build());

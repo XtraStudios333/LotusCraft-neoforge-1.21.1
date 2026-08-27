@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "quadrant=top_left,facing=north": {
+      "model": "lotuscraft:block/large_lily_pad_tl"
+    },
+    "quadrant=top_right,facing=north": {
+      "model": "lotuscraft:block/large_lily_pad_tr"
+    },
+    "quadrant=bottom_left,facing=north": {
+      "model": "lotuscraft:block/large_lily_pad_bl"
+    },
+    "quadrant=bottom_right,facing=north": {
+      "model": "lotuscraft:block/large_lily_pad_br"
+    },
+
+    "quadrant=top_left,facing=east": {
+      "model": "lotuscraft:block/large_lily_pad_tl",
+      "y": 90
+    },
+    "quadrant=top_right,facing=east": {
+      "model": "lotuscraft:block/large_lily_pad_tr",
+      "y": 90
+    },
+    "quadrant=bottom_left,facing=east": {
+      "model": "lotuscraft:block/large_lily_pad_bl",
+      "y": 90
+    },
+    "quadrant=bottom_right,facing=east": {
+      "model": "lotuscraft:block/large_lily_pad_br",
+      "y": 90
+    },
+
+    "quadrant=top_left,facing=south": {
+      "model": "lotuscraft:block/large_lily_pad_tl",
+      "y": 180
+    },
+    "quadrant=top_right,facing=south": {
+      "model": "lotuscraft:block/large_lily_pad_tr",
+      "y": 180
+    },
+    "quadrant=bottom_left,facing=south": {
+      "model": "lotuscraft:block/large_lily_pad_bl",
+      "y": 180
+    },
+    "quadrant=bottom_right,facing=south": {
+      "model": "lotuscraft:block/large_lily_pad_br",
+      "y": 180
+    },
+
+    "quadrant=top_left,facing=west": {
+      "model": "lotuscraft:block/large_lily_pad_tl",
+      "y": 270
+    },
+    "quadrant=top_right,facing=west": {
+      "model": "lotuscraft:block/large_lily_pad_tr",
+      "y": 270
+    },
+    "quadrant=bottom_left,facing=west": {
+      "model": "lotuscraft:block/large_lily_pad_bl",
+      "y": 270
+    },
+    "quadrant=bottom_right,facing=west": {
+      "model": "lotuscraft:block/large_lily_pad_br",
+      "y": 270
+    }
+  }
+}

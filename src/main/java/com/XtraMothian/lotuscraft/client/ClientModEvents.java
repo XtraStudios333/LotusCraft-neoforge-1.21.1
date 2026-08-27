@@ -4,6 +4,7 @@ import com.XtraMothian.lotuscraft.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.world.level.FoliageColor;
@@ -29,7 +30,12 @@ public class ClientModEvents {
                 ModBlocks.HISTOSOL_GRASS.get(),
 
                 ModBlocks.LAUREL.get(),
-                ModBlocks.IVY.get()
+                ModBlocks.IVY.get(),
+                Blocks.LILY_PAD,
+                ModBlocks.LILYPAD_CLUSTER.get(),
+                ModBlocks.LARGE_LILY_PAD.get()
+
+
         );
     }
 
@@ -42,7 +48,10 @@ public class ClientModEvents {
                 ModBlocks.MOLLISOL_GRASS.get(),
                 ModBlocks.ARIDISOL_GRASS.get(),
                 ModBlocks.ALFISOL_GRASS.get(),
-                ModBlocks.HISTOSOL_GRASS.get()
+                ModBlocks.HISTOSOL_GRASS.get(),
+                Blocks.LILY_PAD,
+                ModBlocks.LILYPAD_CLUSTER.get(),
+                ModBlocks.LARGE_LILY_PAD.get()
 
         );
     }

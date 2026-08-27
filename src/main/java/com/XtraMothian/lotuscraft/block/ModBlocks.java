@@ -10,9 +10,11 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
 
 import java.util.function.Supplier;
 
@@ -226,11 +228,30 @@ public class ModBlocks {
                                     .sound(SoundType.GRASS)
                                     .offsetType(BlockBehaviour.OffsetType.XZ)));
 
+    public static final DeferredBlock<AquaticClusterBlock> LILYPAD_CLUSTER = registerBlock("lilypad_cluster",
+            () -> new AquaticClusterBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.PLANT)
+                    .noCollission()
+                    .instabreak()
+                    .sound(SoundType.WET_GRASS)
+                    .pushReaction(PushReaction.DESTROY)
+                    .noOcclusion()));
+
+    public static final DeferredBlock<Block> LARGE_LILY_PAD =
+            registerBlock("large_lily_pad",
+                    () -> new LargeWaterLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
+                            .mapColor(MapColor.PLANT)
+                            .instabreak()
+                            .sound(SoundType.WET_GRASS)
+                            .pushReaction(PushReaction.DESTROY)
+                            .noOcclusion()));
+
     public static final DeferredBlock<SargassumBlock> SARGASSUM =
             registerBlock("sargassum",
                     () -> new SargassumBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
                                     .sound(SoundType.WET_GRASS)));
+
 
     //==================================================
     // Lookup Helpers
@@ -291,12 +312,18 @@ public class ModBlocks {
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
 
-        if ("sargassum".equals(name)) {
+        if ("sargassum".equals(name)
+                || "lilypad_cluster".equals(name)
+                || "large_lily_pad".equals(name)
+        ) {
+
             ModItems.ITEMS.register(name,
                     () -> new PlaceOnWaterBlockItem(
                             block.get(),
                             new Item.Properties()));
+
         } else {
+
             ModItems.ITEMS.register(name,
                     () -> new BlockItem(
                             block.get(),
