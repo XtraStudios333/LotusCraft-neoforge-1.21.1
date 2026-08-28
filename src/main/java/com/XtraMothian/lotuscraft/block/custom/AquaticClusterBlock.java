@@ -111,6 +111,11 @@ public class AquaticClusterBlock extends WaterlilyBlock {
                         3
                 );
 
+                // Consume one item in Survival.
+                if (!player.getAbilities().instabuild) {
+                    stack.shrink(1);
+                }
+
                 level.playSound(
                         null,
                         pos,

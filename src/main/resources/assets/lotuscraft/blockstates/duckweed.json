@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "amount=1": {
+      "model": "lotuscraft:block/duckweed_0"
+    },
+    "amount=2": {
+      "model": "lotuscraft:block/duckweed_1"
+    },
+    "amount=3": {
+      "model": "lotuscraft:block/duckweed_2"
+    }
+  }
+}

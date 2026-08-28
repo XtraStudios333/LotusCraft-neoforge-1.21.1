@@ -249,7 +249,6 @@ public class ModBlocks {
                     .noCollission()
                     .instabreak()
                     .sound(SoundType.WET_GRASS)
-                    .pushReaction(PushReaction.DESTROY)
                     .noOcclusion()));
 
     public static final DeferredBlock<Block> LARGE_LILY_PAD =
@@ -257,13 +256,31 @@ public class ModBlocks {
                     () -> new LargeWaterLilyBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
                             .mapColor(MapColor.PLANT)
                             .instabreak()
-                            .sound(SoundType.WET_GRASS)
+                            .sound(SoundType.LILY_PAD)
                             .pushReaction(PushReaction.DESTROY)
                             .noOcclusion()));
 
+    public static final DeferredBlock<Block> LOTUS_FLOWER =
+            registerBlock("lotus_flower",
+                    () -> new WaterFlowerBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
+                                    .instabreak()
+                                    .sound(SoundType.LILY_PAD)
+                                    .noCollission()
+                                    .noOcclusion()
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)
+                    ));
     public static final DeferredBlock<Block> MOSS_PATCH =
             registerBlock("moss_patch",
                     () -> new CrawlingGreeneryBlock(
+                            BlockBehaviour.Properties.of()
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.MOSS)));
+
+    public static final DeferredBlock<Block> DUCKWEED =
+            registerBlock("duckweed",
+                    () -> new WaterGreeneryBlock(
                             BlockBehaviour.Properties.of()
                                     .noCollission()
                                     .instabreak()
@@ -274,6 +291,16 @@ public class ModBlocks {
                     () -> new SargassumBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.LILY_PAD)
                                     .sound(SoundType.WET_GRASS)));
+
+    public static final DeferredBlock<Block> HORNWORT =
+            registerBlock("hornwort",
+                    () -> new HornwortBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.WET_GRASS)
+                                    .offsetType(BlockBehaviour.OffsetType.XZ)));
 
 
     //==================================================
@@ -338,6 +365,8 @@ public class ModBlocks {
         if ("sargassum".equals(name)
                 || "lilypad_cluster".equals(name)
                 || "large_lily_pad".equals(name)
+                || "lotus_flower".equals(name)
+                || "duckweed".equals(name)
         ) {
 
             ModItems.ITEMS.register(name,

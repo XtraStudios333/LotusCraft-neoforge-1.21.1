@@ -41,7 +41,7 @@ public class CrawlingGreeneryBlock extends Block {
     // ------------------------------------------------------------
 
     private static final VoxelShape FLOOR_1 =
-            Block.box(5, 0, 5, 11, 1, 11);
+            Block.box(4, 0, 4, 12, 1, 12);
 
     private static final VoxelShape FLOOR_2 =
             Block.box(2, 0, 2, 14, 1, 14);
@@ -51,7 +51,7 @@ public class CrawlingGreeneryBlock extends Block {
 
     // Ceiling
     private static final VoxelShape CEILING_1 =
-            Block.box(5, 15, 5, 11, 16, 11);
+            Block.box(4, 15, 4, 12, 16, 12);
 
     private static final VoxelShape CEILING_2 =
             Block.box(2, 15, 2, 14, 16, 14);
@@ -61,7 +61,7 @@ public class CrawlingGreeneryBlock extends Block {
 
     // North wall
     private static final VoxelShape NORTH_1 =
-            Block.box(5, 5, 0, 11, 11, 1);
+            Block.box(4, 4, 0, 12, 12, 1);
 
     private static final VoxelShape NORTH_2 =
             Block.box(2, 2, 0, 14, 14, 1);
@@ -71,7 +71,7 @@ public class CrawlingGreeneryBlock extends Block {
 
     // South wall
     private static final VoxelShape SOUTH_1 =
-            Block.box(5, 5, 15, 11, 11, 16);
+            Block.box(4, 4, 15, 12, 12, 16);
 
     private static final VoxelShape SOUTH_2 =
             Block.box(2, 2, 15, 14, 14, 16);
@@ -81,7 +81,7 @@ public class CrawlingGreeneryBlock extends Block {
 
     // West wall
     private static final VoxelShape WEST_1 =
-            Block.box(0, 5, 5, 1, 11, 11);
+            Block.box(0, 4, 4, 1, 12, 12);
 
     private static final VoxelShape WEST_2 =
             Block.box(0, 2, 2, 1, 14, 14);
@@ -91,7 +91,7 @@ public class CrawlingGreeneryBlock extends Block {
 
     // East wall
     private static final VoxelShape EAST_1 =
-            Block.box(15, 5, 5, 16, 11, 11);
+            Block.box(15, 4, 4, 16, 12, 12);
 
     private static final VoxelShape EAST_2 =
             Block.box(15, 2, 2, 16, 14, 14);
