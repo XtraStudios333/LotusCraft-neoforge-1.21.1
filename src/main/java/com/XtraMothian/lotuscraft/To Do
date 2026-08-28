@@ -2,7 +2,7 @@
 
 ||| Stone |||
 
-||| Foliage: |||
+||| Foliage |||
 || Ground ||
 | Standard |
 Dry Foliage (grass, etc)
@@ -10,20 +10,36 @@ Dry Foliage (grass, etc)
 | Flowers |
 (( Flower packing (small flowers can be packed together) ))
 
-| Underbrush |
-
-|| Wetland ||
-
-|| Crawling ||
-Jasmine (white, yellow purple, etc) - (clustering like wildflowers)
-Wisteria (of a good few colors)
-Moss Patch
-
 || Marine ||
 Lotus
 Duckweed
 Hornwort
 
+\\\ FUTURE \\\
+||| Plants |||
+
+|| Angiosperm Trees ||
+Acacia
+Ash
+Birch
+Maple
+Oak
+Rubber
+Walnut
+Willow
+
+|| Coniferous Trees ||
+
+
+||| Foliage |||
+
+| Underbrush |
+
+|| Wetland ||
+
+|| Crawling ||
+Wisteria (of a good few colors)
+Lichen (block, patches, perhaps updates to glow lichen)
 
 (semi-implemented)
 Milkweed (used to make simple cordage)

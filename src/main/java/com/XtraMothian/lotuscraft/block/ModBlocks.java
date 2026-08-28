@@ -218,6 +218,21 @@ public class ModBlocks {
                     () -> new VineBlock(
                             BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
 
+    public static final DeferredBlock<Block> YELLOW_JASMINE =
+            registerBlock("yellow_jasmine",
+                    () -> new VineBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
+
+    public static final DeferredBlock<Block> WHITE_JASMINE =
+            registerBlock("white_jasmine",
+                    () -> new VineBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
+
+    public static final DeferredBlock<Block> PURPLE_JASMINE =
+            registerBlock("purple_jasmine",
+                    () -> new VineBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.VINE)));
+
     public static final DeferredBlock<Block> REEDS =
             registerBlock("reeds",
                     () -> new TallSemiAquaticPlantBlock(
@@ -245,6 +260,14 @@ public class ModBlocks {
                             .sound(SoundType.WET_GRASS)
                             .pushReaction(PushReaction.DESTROY)
                             .noOcclusion()));
+
+    public static final DeferredBlock<Block> MOSS_PATCH =
+            registerBlock("moss_patch",
+                    () -> new CrawlingGreeneryBlock(
+                            BlockBehaviour.Properties.of()
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.MOSS)));
 
     public static final DeferredBlock<SargassumBlock> SARGASSUM =
             registerBlock("sargassum",

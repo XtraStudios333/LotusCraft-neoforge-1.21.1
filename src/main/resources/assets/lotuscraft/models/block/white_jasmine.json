@@ -1,0 +1,8 @@
+{
+  "parent": "lotuscraft:block/wall_vegetation",
+  "textures": {
+    "base": "lotuscraft:block/white_jasmine_base",
+    "branches": "lotuscraft:block/white_jasmine_branches",
+    "particle": "lotuscraft:block/white_jasmine_base"
+  }
+}

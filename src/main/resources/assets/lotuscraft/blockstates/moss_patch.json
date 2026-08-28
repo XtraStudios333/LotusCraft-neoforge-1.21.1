@@ -1,0 +1,84 @@
+{
+  "variants": {
+    "facing=up,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0"
+    },
+    "facing=up,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1"
+    },
+    "facing=up,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2"
+    },
+
+    "facing=down,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0",
+      "x": 180
+    },
+    "facing=down,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1",
+      "x": 180
+    },
+    "facing=down,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2",
+      "x": 180
+    },
+
+    "facing=north,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0",
+      "x": 270
+    },
+    "facing=north,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1",
+      "x": 270
+    },
+    "facing=north,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2",
+      "x": 270
+    },
+
+    "facing=south,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0",
+      "x": 90
+    },
+    "facing=south,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1",
+      "x": 90
+    },
+    "facing=south,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2",
+      "x": 90
+    },
+
+    "facing=west,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1",
+      "x": 90,
+      "y": 90
+    },
+    "facing=west,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2",
+      "x": 90,
+      "y": 90
+    },
+
+    "facing=east,amount=1": {
+      "model": "lotuscraft:block/moss_patch_0",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,amount=2": {
+      "model": "lotuscraft:block/moss_patch_1",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,amount=3": {
+      "model": "lotuscraft:block/moss_patch_2",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -49,6 +49,7 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.DOLOMITE.get()));
                         output.accept(new ItemStack(ModBlocks.CHERT.get()));
 
+                        output.accept(new ItemStack(ModBlocks.MOSS_PATCH.get()));
                         output.accept(new ItemStack(ModBlocks.WHITE_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PINK_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PURPLE_LILAC.get()));
@@ -66,6 +67,9 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.MILKWEED.get()));
                         output.accept(new ItemStack(ModBlocks.PAPYRUS.get()));
                         output.accept(new ItemStack(ModBlocks.IVY.get()));
+                        output.accept(new ItemStack(ModBlocks.YELLOW_JASMINE.get()));
+                        output.accept(new ItemStack(ModBlocks.WHITE_JASMINE.get()));
+                        output.accept(new ItemStack(ModBlocks.PURPLE_JASMINE.get()));
                         output.accept(new ItemStack(ModBlocks.REEDS.get()));
                         output.accept(new ItemStack(ModBlocks.LILYPAD_CLUSTER.get()));
                         output.accept(new ItemStack(ModBlocks.LARGE_LILY_PAD.get()));

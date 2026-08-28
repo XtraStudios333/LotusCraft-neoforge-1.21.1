@@ -237,55 +237,36 @@ public class LargeWaterLilyBlock extends WaterlilyBlock {
             Player player
     ) {
         if (level.isClientSide()) {
-            return super.playerWillDestroy(
-                    level,
-                    pos,
-                    state,
-                    player
-            );
+            return super.playerWillDestroy(level, pos, state, player);
         }
 
+        LargeLilyPadPart quadrant = state.getValue(QUADRANT);
 
-        LargeLilyPadPart quadrant =
-                state.getValue(QUADRANT);
-
-        /*
-         * The working BigLilyPadBlock uses
-         * affectNeighborsAfterRemoval() for this.
-         *
-         * WaterlilyBlock does not have that method
-         * in your mappings, so we do the equivalent
-         * here instead.
-         */
-        if (quadrant == LargeLilyPadPart.BOTTOM_RIGHT) {
-
-            Direction facing =
-                    state.getValue(FACING);
+        // BOTTOM_LEFT is the designated loot-producing part.
+        if (quadrant != LargeLilyPadPart.BOTTOM_LEFT) {
 
             BlockPos bottomLeftPos =
-                    pos.relative(
-                            facing.getCounterClockWise()
-                    );
+                    this.getRelativeBottomLeftBlockPos(state, pos);
 
-            if (level.getBlockState(bottomLeftPos).is(this)) {
+            BlockState bottomLeft =
+                    level.getBlockState(bottomLeftPos);
 
-                level.destroyBlock(
-                        bottomLeftPos,
-                        true
-                );
+            if (bottomLeft.is(this)) {
+
+                // Destroy the main part and allow its loot table to run.
+                level.destroyBlock(bottomLeftPos, true);
             }
-        }
 
-
-        if (player.isCreative()) {
-            this.preventDropFromBottomLeftPart(
-                    level,
+            // Remove the quadrant the player actually broke
+            // without generating another loot drop.
+            level.setBlock(
                     pos,
-                    state,
-                    player
+                    Blocks.AIR.defaultBlockState(),
+                    35
             );
-        }
 
+            return state;
+        }
 
         return super.playerWillDestroy(
                 level,

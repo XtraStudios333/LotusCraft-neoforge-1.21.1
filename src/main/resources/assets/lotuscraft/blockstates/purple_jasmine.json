@@ -1,0 +1,40 @@
+{
+  "multipart": [
+    {
+      "when": { "north": "true" },
+      "apply": { "model": "lotuscraft:block/purple_jasmine" }
+    },
+    {
+      "when": { "east": "true" },
+      "apply": {
+        "model": "lotuscraft:block/purple_jasmine",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "south": "true" },
+      "apply": {
+        "model": "lotuscraft:block/purple_jasmine",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "west": "true" },
+      "apply": {
+        "model": "lotuscraft:block/purple_jasmine",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": { "up": "true" },
+      "apply": {
+        "model": "lotuscraft:block/purple_jasmine",
+        "x": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}

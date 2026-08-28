@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "lotuscraft:large_lily_pad",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "quadrant": "bottom_left"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "lotuscraft:large_lily_pad"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
