@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "amount=2": {
+      "model": "lotuscraft:block/flower_cluster"
+    },
+    "amount=3": {
+      "model": "lotuscraft:block/flower_cluster"
+    },
+    "amount=4": {
+      "model": "lotuscraft:block/flower_cluster"
+    }
+  }
+}

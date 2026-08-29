@@ -317,6 +317,18 @@ public class ModBlocks {
                                     .sound(SoundType.WET_GRASS)
                                     .offsetType(BlockBehaviour.OffsetType.XZ)));
 
+    //==================================================
+    // Technical Blocks
+    //==================================================
+
+    public static final DeferredBlock<Block> FLOWER_CLUSTER =
+            registerBlock("flower_cluster",
+                    () -> new FlowerClusterBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.PLANT)
+                                    .noCollission()
+                                    .instabreak()
+                                    .sound(SoundType.GRASS)));
 
     //==================================================
     // Lookup Helpers

@@ -2,8 +2,10 @@ package com.XtraMothian.lotuscraft;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
 import com.XtraMothian.lotuscraft.block.custom.ModBlockColors;
+import com.XtraMothian.lotuscraft.block.entity.ModBlockEntities;
 import com.XtraMothian.lotuscraft.client.ClientModEvents; // Import client color handler
 import com.XtraMothian.lotuscraft.event.FlintKnappingEvent;
+import com.XtraMothian.lotuscraft.event.FlowerStackingEvent;
 import com.XtraMothian.lotuscraft.item.ModCreativeModeTabs;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import com.mojang.logging.LogUtils;
@@ -35,19 +37,21 @@ public class LotusCraft {
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
 
         // 3. Global Event Bus Registrations (Game Bus)
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(FlintKnappingEvent.class);
+        NeoForge.EVENT_BUS.register(FlowerStackingEvent.class);
 
         // 4. Config Registration
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
         // 5. Safe Client-Side Initialization
-        // In NeoForge 1.21.1, dist is an enum. Compare it to Dist.CLIENT.
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modEventBus.addListener(ClientModEvents::registerBlockColors);
             modEventBus.addListener(ClientModEvents::registerItemColors);
+            modEventBus.addListener(ClientModEvents::registerRenderers);
         }
     }
 

@@ -1,6 +1,8 @@
 package com.XtraMothian.lotuscraft.client;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
+import com.XtraMothian.lotuscraft.block.entity.ModBlockEntities;
+import com.XtraMothian.lotuscraft.client.renderer.FlowerClusterRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
@@ -8,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.world.level.FoliageColor;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 public class ClientModEvents {
@@ -34,11 +37,8 @@ public class ClientModEvents {
                 Blocks.LILY_PAD,
                 ModBlocks.LILYPAD_CLUSTER.get(),
                 ModBlocks.LARGE_LILY_PAD.get()
-
-
         );
     }
-
 
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
 
@@ -52,7 +52,15 @@ public class ClientModEvents {
                 Blocks.LILY_PAD,
                 ModBlocks.LILYPAD_CLUSTER.get(),
                 ModBlocks.LARGE_LILY_PAD.get()
+        );
+    }
 
+    public static void registerRenderers(
+            EntityRenderersEvent.RegisterRenderers event
+    ) {
+        event.registerBlockEntityRenderer(
+                ModBlockEntities.FLOWER_CLUSTER.get(),
+                FlowerClusterRenderer::new
         );
     }
 }
