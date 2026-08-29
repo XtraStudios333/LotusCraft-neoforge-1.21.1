@@ -5,13 +5,9 @@
 ||| Foliage |||
 || Ground ||
 | Standard |
-Dry Foliage (grass, etc)
 
 | Flowers |
 (( Flower packing (small flowers can be packed together) ))
-
-|| Marine ||
-Hornwort
 
 \\\ FUTURE \\\
 ||| Plants |||
@@ -19,15 +15,26 @@ Hornwort
 || Angiosperm Trees ||
 Acacia
 Ash
+Aspen
+Baobab
 Birch
+Cherry
+Mahogany
+Mangrove
 Maple
 Oak
 Rubber
 Walnut
 Willow
+Yucca
 
 || Coniferous Trees ||
-
+Cedar
+Fir
+Larch
+Pine
+Redwood
+Spruce
 
 ||| Foliage |||
 
@@ -38,6 +45,8 @@ Willow
 || Crawling ||
 Wisteria (of a good few colors)
 Lichen (block, patches, perhaps updates to glow lichen)
+
+|| Marine ||
 
 (semi-implemented)
 Milkweed (used to make simple cordage)

@@ -198,6 +198,21 @@ public class ModBlocks {
                                     .sound(SoundType.GRASS)
                                     .offsetType(BlockBehaviour.OffsetType.XZ)));
 
+    public static final DeferredBlock<Block> SHORT_DRY_GRASS =
+            registerBlock("short_dry_grass",
+                    () -> new TallGrassBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)));
+
+    public static final DeferredBlock<Block> TALL_DRY_GRASS =
+            registerBlock("tall_dry_grass",
+                    () -> new TallGrassBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)));
+
+    public static final DeferredBlock<Block> DRY_FERN =
+            registerBlock("dry_fern",
+                    () -> new TallGrassBlock(
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)));
+
     public static final DeferredBlock<Block> CATTAIL =
             registerBlock("cattail",
                     () -> new FoliageBlock(

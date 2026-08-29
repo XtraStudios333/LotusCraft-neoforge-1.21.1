@@ -53,6 +53,9 @@ public class ModCreativeModeTabs {
                         output.accept(new ItemStack(ModBlocks.CLOVERS.get()));
                         output.accept(new ItemStack(ModBlocks.IVY.get()));
                         output.accept(new ItemStack(ModBlocks.LAUREL.get()));
+                        output.accept(new ItemStack(ModBlocks.SHORT_DRY_GRASS.get()));
+                        output.accept(new ItemStack(ModBlocks.TALL_DRY_GRASS.get()));
+                        output.accept(new ItemStack(ModBlocks.DRY_FERN.get()));
                         output.accept(new ItemStack(ModBlocks.WHITE_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PINK_ORCHID.get()));
                         output.accept(new ItemStack(ModBlocks.PURPLE_LILAC.get()));
