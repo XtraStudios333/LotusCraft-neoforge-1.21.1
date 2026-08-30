@@ -73,9 +73,6 @@ public class FlowerClusterClientExtensions {
                         Block flower =
                                 getFlower(level, pos);
 
-                        System.out.println(
-                                "FLOWER CLUSTER PARTICLES: flower = " + flower
-                        );
                         /*
                          * If the BlockEntity has already disappeared,
                          * use the cached flower instead.
