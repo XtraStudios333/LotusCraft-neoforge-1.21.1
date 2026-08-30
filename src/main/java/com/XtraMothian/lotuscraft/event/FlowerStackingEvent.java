@@ -5,18 +5,19 @@ import com.XtraMothian.lotuscraft.block.custom.FlowerClusterBlock;
 import com.XtraMothian.lotuscraft.block.entity.custom.FlowerClusterBlockEntity;
 import com.XtraMothian.lotuscraft.util.ModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.neoforged.neoforge.event.level.ExplosionEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import net.neoforged.neoforge.event.level.ExplosionEvent;
 
 public class FlowerStackingEvent {
 
@@ -35,37 +36,80 @@ public class FlowerStackingEvent {
             return;
         }
 
-        Level level = event.getLevel();
-        BlockPos pos = event.getPos();
-        BlockState state = level.getBlockState(pos);
-        ItemStack heldItem = event.getItemStack();
+        Level level =
+                event.getLevel();
 
-        // We only care about block items.
+        BlockPos pos =
+                event.getPos();
+
+        BlockState state =
+                level.getBlockState(pos);
+
+        ItemStack heldItem =
+                event.getItemStack();
+
+        /*
+         * We only care about block items.
+         */
         if (!(heldItem.getItem() instanceof BlockItem blockItem)) {
             return;
         }
 
-        Block heldBlock = blockItem.getBlock();
+        Block heldBlock =
+                blockItem.getBlock();
 
         /*
-         * ------------------------------------------------------------
+         * ========================================================
          * EXISTING FLOWER → CREATE CLUSTER
-         * ------------------------------------------------------------
+         * ========================================================
          */
 
         if (state.is(ModTags.Blocks.SMALL_FLOWER)
                 && !state.is(ModTags.Blocks.FLOWER_STACKING_EXEMPT)) {
 
-            // The flower being held must be the same flower.
+            /*
+             * The held flower must be the same flower.
+             */
             if (heldBlock != state.getBlock()) {
                 return;
             }
 
+            /*
+             * ----------------------------------------------------
+             * CLIENT SIDE
+             * ----------------------------------------------------
+             *
+             * The client is responsible for the visible hand
+             * animation.
+             *
+             * We do NOT modify the world or consume the item here.
+             */
             if (level.isClientSide()) {
+
+                event.getEntity().swing(
+                        InteractionHand.MAIN_HAND
+                );
+
+                event.setCanceled(true);
+
                 return;
             }
 
-            // Create a 2-flower cluster.
+            /*
+             * ----------------------------------------------------
+             * SERVER SIDE
+             * ----------------------------------------------------
+             */
+
+            /*
+             * Remember the original flower before replacing it.
+             */
+            Block originalFlower =
+                    state.getBlock();
+
+            /*
+             * Create a 2-flower cluster.
+             */
             BlockState clusterState =
                     ModBlocks.FLOWER_CLUSTER.get()
                             .defaultBlockState()
@@ -80,49 +124,71 @@ public class FlowerStackingEvent {
                     Block.UPDATE_ALL
             );
 
-            // Remember which flower this cluster contains.
+            /*
+             * Store the original flower in the BlockEntity.
+             */
             if (level.getBlockEntity(pos)
                     instanceof FlowerClusterBlockEntity cluster) {
 
-                cluster.setFlower(state.getBlock());
+                cluster.setFlower(originalFlower);
             }
 
-            // Consume the flower used for stacking.
+            /*
+             * Consume the flower.
+             */
             if (!event.getEntity().isCreative()) {
                 heldItem.shrink(1);
             }
 
+            /*
+             * Play the original flower's placement sound.
+             */
+            playFlowerPlaceSound(
+                    level,
+                    pos,
+                    originalFlower
+            );
+
+            /*
+             * Tell the server that we handled the interaction.
+             */
             event.setCanceled(true);
+
             return;
         }
 
         /*
-         * ------------------------------------------------------------
+         * ========================================================
          * EXISTING CLUSTER → ADD ANOTHER FLOWER
-         * ------------------------------------------------------------
+         * ========================================================
          */
 
         if (state.is(ModBlocks.FLOWER_CLUSTER.get())) {
 
-            if (level.isClientSide()) {
-                return;
-            }
-
+            /*
+             * We need the BlockEntity on both sides to determine
+             * which flower this cluster contains.
+             */
             if (!(level.getBlockEntity(pos)
                     instanceof FlowerClusterBlockEntity cluster)) {
+
                 return;
             }
 
             Block clusterFlower =
                     cluster.getFlower();
 
-            // Safety check: a cluster without a flower
-            // cannot be stacked.
+            /*
+             * A cluster without a stored flower cannot accept
+             * additional flowers.
+             */
             if (clusterFlower == null) {
                 return;
             }
 
-            // The held flower must be the same type.
+            /*
+             * The held flower must match the cluster flower.
+             */
             if (heldBlock != clusterFlower) {
                 return;
             }
@@ -132,12 +198,40 @@ public class FlowerStackingEvent {
                             FlowerClusterBlock.AMOUNT
                     );
 
-            // Maximum of four flowers.
+            /*
+             * Maximum of four flowers.
+             */
             if (amount >= 4) {
                 return;
             }
 
-            // Increase the cluster size.
+            /*
+             * ----------------------------------------------------
+             * CLIENT SIDE
+             * ----------------------------------------------------
+             *
+             * Play the visible hand animation.
+             */
+            if (level.isClientSide()) {
+
+                event.getEntity().swing(
+                        InteractionHand.MAIN_HAND
+                );
+
+                event.setCanceled(true);
+
+                return;
+            }
+
+            /*
+             * ----------------------------------------------------
+             * SERVER SIDE
+             * ----------------------------------------------------
+             */
+
+            /*
+             * Increase the cluster size.
+             */
             level.setBlock(
                     pos,
                     state.setValue(
@@ -147,85 +241,129 @@ public class FlowerStackingEvent {
                     Block.UPDATE_ALL
             );
 
-            // Consume the additional flower.
+            /*
+             * Consume the flower.
+             */
             if (!event.getEntity().isCreative()) {
                 heldItem.shrink(1);
             }
 
+            /*
+             * Play the base flower's placement sound.
+             */
+            playFlowerPlaceSound(
+                    level,
+                    pos,
+                    clusterFlower
+            );
+
+            /*
+             * Tell the server that we handled the interaction.
+             */
             event.setCanceled(true);
         }
     }
 
+    /*
+     * ============================================================
+     * FLOWER PLACEMENT SOUND
+     * ============================================================
+     */
+
+    private static void playFlowerPlaceSound(
+            Level level,
+            BlockPos pos,
+            Block flower
+    ) {
+
+        BlockState flowerState =
+                flower.defaultBlockState();
+
+        SoundType soundType =
+                flowerState.getSoundType();
+
+        /*
+         * Placement volume.
+         */
+        float volume =
+                (soundType.getVolume() + 1.0F) / 2.0F;
+
+        /*
+         * Placement pitch with vanilla-style variation.
+         */
+        float pitch =
+                soundType.getPitch()
+                        * 0.7F
+                        + level.getRandom().nextFloat()
+                        * 0.2F;
+
+        level.playSound(
+                null,
+                pos,
+                soundType.getPlaceSound(),
+                SoundSource.BLOCKS,
+                volume,
+                pitch
+        );
+    }
 
     /*
      * ============================================================
      * PLAYER BREAK EVENT
      * ============================================================
-     *
-     * This event fires while the cluster's BlockEntity still
-     * exists.
-     *
-     * We are NOT dropping anything here.
-     *
-     * FlowerClusterBlock.playerDestroy() already handles the
-     * actual flower drops.
-     *
-     * This event is intentionally here as a reliable point at
-     * which we can later add special destruction handling if
-     * needed.
      */
 
     @SubscribeEvent
-    public static void onBlockBreak(BlockEvent.BreakEvent event) {
+    public static void onBlockBreak(
+            BlockEvent.BreakEvent event
+    ) {
 
         if (event.getLevel().isClientSide()) {
             return;
         }
 
-        BlockPos pos = event.getPos();
-        BlockState state = event.getState();
+        BlockPos pos =
+                event.getPos();
+
+        BlockState state =
+                event.getState();
 
         if (!state.is(ModBlocks.FLOWER_CLUSTER.get())) {
             return;
         }
 
-        BlockEntity blockEntity =
-                event.getLevel().getBlockEntity(pos);
-
-        if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
-            return;
-        }
-
-        Block flower = cluster.getFlower();
-
-        if (flower == null) {
-            return;
-        }
-
         /*
-         * Nothing is dropped here.
+         * FlowerClusterBlock.playerDestroy() handles the
+         * actual flower drops.
          *
-         * FlowerClusterBlock.playerDestroy() handles the actual
-         * flower drops.
+         * Nothing is dropped here.
          */
     }
+
+    /*
+     * ============================================================
+     * EXPLOSION
+     * ============================================================
+     */
 
     @SubscribeEvent
     public static void onExplosionDetonate(
             ExplosionEvent.Detonate event
     ) {
-        Level level = event.getLevel();
+
+        Level level =
+                event.getLevel();
 
         if (level.isClientSide()) {
             return;
         }
 
         /*
-         * Detonate gives us the blocks that the explosion is
-         * going to destroy while their BlockEntities still
-         * exist.
+         * Detonate gives us the blocks the explosion is going
+         * to destroy while their BlockEntities still exist.
          */
-        for (BlockPos pos : event.getAffectedBlocks()) {
+        for (BlockPos pos :
+                event.getAffectedBlocks()) {
 
             BlockState state =
                     level.getBlockState(pos);
@@ -237,7 +375,9 @@ public class FlowerStackingEvent {
             BlockEntity blockEntity =
                     level.getBlockEntity(pos);
 
-            if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
+            if (!(blockEntity
+                    instanceof FlowerClusterBlockEntity cluster)) {
+
                 continue;
             }
 
@@ -266,16 +406,13 @@ public class FlowerStackingEvent {
                             amount / 2
                     );
 
-            ItemStack flowerStack =
-                    new ItemStack(
-                            flower.asItem(),
-                            dropAmount
-                    );
-
             Block.popResource(
                     level,
                     pos,
-                    flowerStack
+                    new ItemStack(
+                            flower.asItem(),
+                            dropAmount
+                    )
             );
         }
     }

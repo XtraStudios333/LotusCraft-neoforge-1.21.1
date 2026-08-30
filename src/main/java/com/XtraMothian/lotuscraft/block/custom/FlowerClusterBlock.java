@@ -12,6 +12,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -45,6 +46,40 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             BlockState state
     ) {
         return new FlowerClusterBlockEntity(pos, state);
+    }
+
+    /*
+     * ============================================================
+     * STORED FLOWER
+     * ============================================================
+     */
+
+    public Block getStoredFlower(
+            Level level,
+            BlockPos pos
+    ) {
+        BlockEntity blockEntity =
+                level.getBlockEntity(pos);
+
+        if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
+            return null;
+        }
+
+        return cluster.getFlower();
+    }
+
+    public SoundType getStoredFlowerSound(
+            Level level,
+            BlockPos pos
+    ) {
+        Block flower =
+                getStoredFlower(level, pos);
+
+        if (flower == null) {
+            return this.defaultBlockState().getSoundType();
+        }
+
+        return flower.defaultBlockState().getSoundType();
     }
 
     /*
@@ -244,6 +279,12 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         );
     }
 
+    /*
+     * ============================================================
+     * PISTON PUSH
+     * ============================================================
+     */
+
     @Override
     public void onDestroyedByPushReaction(
             BlockState state,
@@ -259,10 +300,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
 
-        /*
-         * The BlockEntity is still intact here.
-         * Capture the flower and amount BEFORE removing the block.
-         */
         if (blockEntity instanceof FlowerClusterBlockEntity cluster) {
 
             Block flower =
@@ -273,9 +310,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 int amount =
                         state.getValue(AMOUNT);
 
-                /*
-                 * Drop the complete contents.
-                 */
                 popResource(
                         level,
                         pos,
@@ -287,15 +321,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             }
         }
 
-        /*
-         * IMPORTANT:
-         *
-         * Actually destroy the block here.
-         *
-         * This is the part that prevents the piston destruction
-         * from being treated as another independent destruction
-         * event afterward.
-         */
         level.removeBlock(
                 pos,
                 false
@@ -330,9 +355,7 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         }
 
         /*
-         * --------------------------------------------------------
-         * WATER / FLUID SAFETY CHECK
-         * --------------------------------------------------------
+         * WATER / FLUID
          */
 
         if (!level.getFluidState(pos).isEmpty()) {
@@ -358,9 +381,7 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         }
 
         /*
-         * --------------------------------------------------------
          * ORIGINAL FLOWER SURVIVAL
-         * --------------------------------------------------------
          */
 
         BlockState flowerState =

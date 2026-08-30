@@ -52,6 +52,7 @@ public class LotusCraft {
             modEventBus.addListener(ClientModEvents::registerBlockColors);
             modEventBus.addListener(ClientModEvents::registerItemColors);
             modEventBus.addListener(ClientModEvents::registerRenderers);
+            modEventBus.addListener(ClientModEvents::registerFlowerClusterClientExtensions);
         }
     }
 

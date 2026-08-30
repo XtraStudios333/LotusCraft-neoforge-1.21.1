@@ -33,8 +33,11 @@ public class FlowerClusterBlockEntity extends BlockEntity {
 
         setChanged();
 
-        // Tell the client that this BlockEntity's data changed.
+        /*
+         * Synchronize the stored flower to clients.
+         */
         if (level != null && !level.isClientSide) {
+
             level.sendBlockUpdated(
                     worldPosition,
                     getBlockState(),
@@ -53,11 +56,17 @@ public class FlowerClusterBlockEntity extends BlockEntity {
             CompoundTag tag,
             HolderLookup.Provider registries
     ) {
-        super.saveAdditional(tag, registries);
+        super.saveAdditional(
+                tag,
+                registries
+        );
 
         if (flower != null) {
+
             ResourceLocation id =
-                    BuiltInRegistries.BLOCK.getKey(flower);
+                    BuiltInRegistries.BLOCK.getKey(
+                            flower
+                    );
 
             tag.putString(
                     "Flower",
@@ -71,15 +80,20 @@ public class FlowerClusterBlockEntity extends BlockEntity {
             CompoundTag tag,
             HolderLookup.Provider registries
     ) {
-        super.loadAdditional(tag, registries);
+        super.loadAdditional(
+                tag,
+                registries
+        );
 
         if (tag.contains("Flower")) {
+
             ResourceLocation id =
                     ResourceLocation.parse(
                             tag.getString("Flower")
                     );
 
-            flower = BuiltInRegistries.BLOCK.get(id);
+            flower =
+                    BuiltInRegistries.BLOCK.get(id);
         }
     }
 
@@ -87,9 +101,13 @@ public class FlowerClusterBlockEntity extends BlockEntity {
     public CompoundTag getUpdateTag(
             HolderLookup.Provider registries
     ) {
-        CompoundTag tag = new CompoundTag();
+        CompoundTag tag =
+                new CompoundTag();
 
-        saveAdditional(tag, registries);
+        saveAdditional(
+                tag,
+                registries
+        );
 
         return tag;
     }

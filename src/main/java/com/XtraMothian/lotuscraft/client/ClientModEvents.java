@@ -2,29 +2,48 @@ package com.XtraMothian.lotuscraft.client;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
 import com.XtraMothian.lotuscraft.block.entity.ModBlockEntities;
+import com.XtraMothian.lotuscraft.client.FlowerClusterClientExtensions;
 import com.XtraMothian.lotuscraft.client.renderer.FlowerClusterRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.world.level.FoliageColor;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.bus.api.SubscribeEvent;
 
 public class ClientModEvents {
 
-    public static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+    /*
+     * ============================================================
+     * BLOCK COLORS
+     * ============================================================
+     */
+
+    @SubscribeEvent
+    public static void registerBlockColors(
+            RegisterColorHandlersEvent.Block event
+    ) {
 
         event.register(
-                (BlockState state, BlockAndTintGetter level, BlockPos pos, int tintIndex) -> {
+                (BlockState state,
+                 BlockAndTintGetter level,
+                 BlockPos pos,
+                 int tintIndex) -> {
 
                     if (level == null || pos == null) {
                         return FoliageColor.getDefaultColor();
                     }
 
-                    return BiomeColors.getAverageGrassColor(level, pos);
+                    return BiomeColors.getAverageGrassColor(
+                            level,
+                            pos
+                    );
                 },
 
                 ModBlocks.MOLLISOL_GRASS.get(),
@@ -40,10 +59,20 @@ public class ClientModEvents {
         );
     }
 
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
+    /*
+     * ============================================================
+     * ITEM COLORS
+     * ============================================================
+     */
+
+    @SubscribeEvent
+    public static void registerItemColors(
+            RegisterColorHandlersEvent.Item event
+    ) {
 
         event.register(
-                (ItemStack stack, int tintIndex) -> FoliageColor.getDefaultColor(),
+                (ItemStack stack, int tintIndex) ->
+                        FoliageColor.getDefaultColor(),
 
                 ModBlocks.MOLLISOL_GRASS.get(),
                 ModBlocks.ARIDISOL_GRASS.get(),
@@ -55,12 +84,42 @@ public class ClientModEvents {
         );
     }
 
+    /*
+     * ============================================================
+     * BLOCK ENTITY RENDERERS
+     * ============================================================
+     */
+
+    @SubscribeEvent
     public static void registerRenderers(
             EntityRenderersEvent.RegisterRenderers event
     ) {
+
         event.registerBlockEntityRenderer(
                 ModBlockEntities.FLOWER_CLUSTER.get(),
                 FlowerClusterRenderer::new
+        );
+    }
+
+    /*
+     * ============================================================
+     * FLOWER CLUSTER CLIENT EXTENSIONS
+     * ============================================================
+     *
+     * This is what connects FlowerClusterClientExtensions to
+     * NeoForge's client extension system.
+     *
+     * Without this registration, the methods inside
+     * FlowerClusterClientExtensions will never be called.
+     */
+
+    @SubscribeEvent
+    public static void registerFlowerClusterClientExtensions(
+            RegisterClientExtensionsEvent event
+    ) {
+
+        FlowerClusterClientExtensions.registerClientExtensions(
+                event
         );
     }
 }
