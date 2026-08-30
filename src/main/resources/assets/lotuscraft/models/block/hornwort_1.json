@@ -1,7 +1,7 @@
 {
 	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
-	"texture_size": [16, 16],
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "lotuscraft:block/hornwort_1",
@@ -239,9 +239,9 @@
 			"to": [15.5, 3, 15.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [13.5, -1, 13.5]},
 			"faces": {
-				"north": {"uv": [6, 5, 5, 2], "texture": "#0"},
+				"north": {"uv": [6, 5, 11, 7], "texture": "#0"},
 				"east": {"uv": [0, 0, 0, 2], "texture": "#0"},
-				"south": {"uv": [6, 5, 5, 2], "texture": "#0"},
+				"south": {"uv": [6, 5, 11, 7], "texture": "#0"},
 				"west": {"uv": [3, 0, 3, 2], "texture": "#0"}
 			}
 		},
@@ -251,9 +251,9 @@
 			"rotation": {"angle": 0, "axis": "y", "origin": [13.5, -1, 11.5]},
 			"faces": {
 				"north": {"uv": [0, 0, 0, 2], "texture": "#0"},
-				"east": {"uv": [6, 5, 5, 2], "texture": "#0"},
+				"east": {"uv": [6, 5, 11, 7], "texture": "#0"},
 				"south": {"uv": [3, 0, 3, 2], "texture": "#0"},
-				"west": {"uv": [6, 5, 5, 2], "texture": "#0"}
+				"west": {"uv": [6, 5, 11, 7], "texture": "#0"}
 			}
 		},
 		{
@@ -274,9 +274,9 @@
 			"to": [15.5, 3, 10.5],
 			"rotation": {"angle": 0, "axis": "y", "origin": [11.5, -1, 11.5]},
 			"faces": {
-				"north": {"uv": [6, 5, 5, 2], "texture": "#0"},
+				"north": {"uv": [6, 5, 11, 7], "texture": "#0"},
 				"east": {"uv": [3, 0, 3, 2], "texture": "#0"},
-				"south": {"uv": [6, 5, 5, 2], "texture": "#0"},
+				"south": {"uv": [6, 5, 11, 7], "texture": "#0"},
 				"west": {"uv": [1, 0, 1, 2], "texture": "#0"}
 			}
 		}

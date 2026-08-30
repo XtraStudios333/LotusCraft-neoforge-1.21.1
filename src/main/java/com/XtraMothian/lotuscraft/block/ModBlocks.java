@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraft.world.level.material.PushReaction;
 
 
 import java.util.function.Supplier;
@@ -328,7 +329,8 @@ public class ModBlocks {
                                     .mapColor(MapColor.PLANT)
                                     .noCollission()
                                     .instabreak()
-                                    .sound(SoundType.GRASS)));
+                                    .sound(SoundType.GRASS)
+                                    .pushReaction(PushReaction.DESTROY)));
 
     //==================================================
     // Lookup Helpers
