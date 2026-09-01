@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-
+    "minecraft:blue_orchid",
+    "lotuscraft:white_orchid",
+    "lotuscraft:pink_orchid"
   ]
 }

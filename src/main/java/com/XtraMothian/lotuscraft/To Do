@@ -1,16 +1,15 @@
 ((( This list is simply a features list of things to add and do )))
 
-||| Stone |||
-
-||| Foliage |||
-|| Ground ||
-| Standard |
-
-| Flowers |
-(( Flower packing (small flowers can be packed together) ))
+\\\ Current \\\
+| Trees |
+Oak
+Spruce
+Aspen
 
 \\\ FUTURE \\\
-||| Plants |||
+|||| Plants ||||
+
+||| Trees |||
 
 || Angiosperm Trees ||
 Acacia
@@ -38,7 +37,10 @@ Spruce
 
 ||| Foliage |||
 
-| Underbrush |
+|| Ground ||
+| Standard |
+
+| Flowers |
 
 || Wetland ||
 

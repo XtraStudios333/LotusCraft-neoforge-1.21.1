@@ -1,22 +1,21 @@
 package com.XtraMothian.lotuscraft;
 
 import com.XtraMothian.lotuscraft.block.ModBlocks;
-import com.XtraMothian.lotuscraft.block.custom.ModBlockColors;
 import com.XtraMothian.lotuscraft.block.entity.ModBlockEntities;
-import com.XtraMothian.lotuscraft.client.ClientModEvents; // Import client color handler
+import com.XtraMothian.lotuscraft.client.ClientModEvents;
 import com.XtraMothian.lotuscraft.event.FlintKnappingEvent;
 import com.XtraMothian.lotuscraft.event.FlowerStackingEvent;
 import com.XtraMothian.lotuscraft.item.ModCreativeModeTabs;
 import com.XtraMothian.lotuscraft.item.ModItems;
 import com.mojang.logging.LogUtils;
-import net.neoforged.api.distmarker.Dist; // Added for side checking
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.loading.FMLEnvironment; // Used to safely check sides
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;

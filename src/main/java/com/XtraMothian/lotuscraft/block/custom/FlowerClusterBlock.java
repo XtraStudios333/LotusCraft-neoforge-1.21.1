@@ -19,6 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,6 +31,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
 
 /**
@@ -39,12 +41,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
  *
  * The actual flower type is stored inside FlowerClusterBlockEntity.
  *
- * This block is intentionally NOT an event subscriber.
- *
- * Direct interaction with an existing cluster is handled by
- * useItemOn().
+ * Explosion handling is deliberately done through NeoForge's
+ * IBlockExtension explosion hooks.
  */
-public class FlowerClusterBlock extends Block implements EntityBlock {
+public class FlowerClusterBlock extends Block
+        implements EntityBlock, IBlockExtension {
 
     /*
      * ============================================================
@@ -125,78 +126,45 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             InteractionHand hand,
             BlockHitResult hitResult
     ) {
-        /*
-         * Make absolutely sure this is our block.
-         */
         if (!state.is(this)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-
-        /*
-         * Find the cluster BlockEntity.
-         */
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
-
 
         if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-
-        /*
-         * Determine which flower this cluster represents.
-         */
         Block storedFlower =
                 cluster.getFlower();
-
 
         if (storedFlower == null) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-
-        /*
-         * The held item must be the exact flower item represented
-         * by this cluster.
-         */
         if (!stack.is(storedFlower.asItem())) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-
-        /*
-         * Current cluster size.
-         */
         int amount =
                 state.getValue(AMOUNT);
 
-
-        /*
-         * Four is the maximum.
-         */
         if (amount >= 4) {
             return ItemInteractionResult.FAIL;
         }
 
-
         /*
-         * Client:
+         * Client only reports success.
          *
-         * Report success but do not modify the world or consume
-         * the item.
+         * The server performs the actual state change and
+         * item consumption.
          */
         if (level.isClientSide()) {
             return ItemInteractionResult.SUCCESS;
         }
 
-
-        /*
-         * Server:
-         *
-         * Increase the cluster by exactly one.
-         */
         level.setBlock(
                 pos,
                 state.setValue(
@@ -206,14 +174,9 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 Block.UPDATE_ALL
         );
 
-
-        /*
-         * Consume one flower unless the player is in Creative.
-         */
         if (!player.getAbilities().instabuild) {
             stack.shrink(1);
         }
-
 
         return ItemInteractionResult.SUCCESS;
     }
@@ -223,32 +186,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
      * ============================================================
      * PICK BLOCK / MIDDLE CLICK
      * ============================================================
-     *
-     * When the player middle-clicks this cluster, Minecraft asks
-     * the block which ItemStack should be picked.
-     *
-     * Normally this would return the FlowerClusterBlock item.
-     *
-     * Instead, return the actual flower represented by the
-     * FlowerClusterBlockEntity.
-     *
-     * This makes middle-clicking:
-     *
-     *     Flower Cluster
-     *            |
-     *            v
-     *     Corresponding Flower
-     *
-     * rather than:
-     *
-     *     Flower Cluster
-     *            |
-     *            v
-     *     Flower Cluster Item
-     *
-     * The normal Minecraft pick-block handling can then use that
-     * flower item and select an existing copy from the player's
-     * inventory/hotbar when appropriate.
      */
 
     @Override
@@ -259,41 +196,20 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             BlockPos pos,
             Player player
     ) {
-        /*
-         * Find the BlockEntity containing the actual flower type.
-         */
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
 
-
-        /*
-         * If the BlockEntity is missing or invalid, there is no
-         * flower to pick.
-         */
         if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
             return ItemStack.EMPTY;
         }
 
-
-        /*
-         * Get the flower represented by this cluster.
-         */
         Block flower =
                 cluster.getFlower();
 
-
-        /*
-         * A cluster without a stored flower cannot provide a
-         * meaningful pick-block item.
-         */
         if (flower == null) {
             return ItemStack.EMPTY;
         }
 
-
-        /*
-         * Return the normal flower item.
-         */
         return new ItemStack(
                 flower.asItem()
         );
@@ -304,10 +220,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
      * ============================================================
      * REPLACEMENT PROTECTION
      * ============================================================
-     *
-     * A FlowerClusterBlock must not be replaced by an ordinary
-     * flower BlockItem through Minecraft's normal replacement
-     * mechanics.
      */
 
     @Override
@@ -330,8 +242,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
      * ============================================================
      * PLACEMENT STATE
      * ============================================================
-     *
-     * A newly created cluster always begins at two flowers.
      */
 
     @Override
@@ -365,21 +275,14 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 stack
         );
 
-
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
-
 
         if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
             return;
         }
 
-
-        /*
-         * A normal flower is represented by a BlockItem.
-         */
         if (stack.getItem() instanceof BlockItem blockItem) {
-
             cluster.setFlower(
                     blockItem.getBlock()
             );
@@ -402,11 +305,9 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
 
-
         if (!(blockEntity instanceof FlowerClusterBlockEntity cluster)) {
             return null;
         }
-
 
         return cluster.getFlower();
     }
@@ -428,32 +329,18 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
         int amount =
                 state.getValue(AMOUNT);
 
-
-        /*
-         * Deterministic random source.
-         *
-         * This ensures the same block position produces the same
-         * offsets every time.
-         */
         RandomSource random =
                 RandomSource.create(pos.asLong());
 
-
-        /*
-         * Deterministic rotation.
-         */
         int rotation =
                 random.nextInt(4);
-
 
         VoxelShape result =
                 Shapes.empty();
 
-
         switch (amount) {
 
             case 2 -> {
-
                 result = Shapes.or(
                         result,
                         createFlowerShape(
@@ -463,7 +350,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                                 random
                         )
                 );
-
 
                 result = Shapes.or(
                         result,
@@ -476,9 +362,7 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 );
             }
 
-
             case 3 -> {
-
                 result = Shapes.or(
                         result,
                         createFlowerShape(
@@ -489,7 +373,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                         )
                 );
 
-
                 result = Shapes.or(
                         result,
                         createFlowerShape(
@@ -499,7 +382,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                                 random
                         )
                 );
-
 
                 result = Shapes.or(
                         result,
@@ -512,9 +394,7 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 );
             }
 
-
             case 4 -> {
-
                 result = Shapes.or(
                         result,
                         createFlowerShape(
@@ -524,7 +404,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                                 random
                         )
                 );
-
 
                 result = Shapes.or(
                         result,
@@ -536,7 +415,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                         )
                 );
 
-
                 result = Shapes.or(
                         result,
                         createFlowerShape(
@@ -546,7 +424,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                                 random
                         )
                 );
-
 
                 result = Shapes.or(
                         result,
@@ -559,7 +436,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 );
             }
         }
-
 
         return result;
     }
@@ -577,28 +453,20 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             int rotation,
             RandomSource random
     ) {
-        /*
-         * Random offset.
-         */
         float randomX =
                 (random.nextFloat() * 0.30F) - 0.15F;
-
 
         float randomZ =
                 (random.nextFloat() * 0.30F) - 0.15F;
 
-
         float x =
                 baseX + randomX;
-
 
         float z =
                 baseZ + randomZ;
 
-
         float rotatedX;
         float rotatedZ;
-
 
         switch (rotation) {
 
@@ -607,18 +475,15 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                 rotatedZ = -x;
             }
 
-
             case 2 -> {
                 rotatedX = -x;
                 rotatedZ = -z;
             }
 
-
             case 3 -> {
                 rotatedX = -z;
                 rotatedZ = x;
             }
-
 
             default -> {
                 rotatedX = x;
@@ -626,18 +491,14 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             }
         }
 
-
         double centerX =
                 0.5D + rotatedX;
-
 
         double centerZ =
                 0.5D + rotatedZ;
 
-
         double halfSize =
                 3.0D / 16.0D;
-
 
         return Block.box(
                 (centerX - halfSize) * 16.0D,
@@ -676,11 +537,9 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             );
         }
 
-
         player.awardStat(
                 net.minecraft.stats.Stats.BLOCK_MINED.get(this)
         );
-
 
         if (!player.isCreative()) {
             player.causeFoodExhaustion(0.005F);
@@ -690,38 +549,129 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
 
     /*
      * ============================================================
-     * EXPLOSIONS
+     * EXPLOSION DROP CONTROL
      * ============================================================
+     *
+     * THIS IS THE IMPORTANT PART.
+     *
+     * NeoForge's explosion system has two separate concepts:
+     *
+     * 1. Should this block's normal explosion loot be dropped?
+     * 2. What should happen when the explosion actually destroys
+     *    the block?
+     *
+     * If we leave canDropFromExplosion() alone, the default
+     * explosion drop mechanism can create an item independently
+     * of our custom BlockEntity-aware drop code.
+     *
+     * That is exactly what causes the "item drops but the block
+     * remains" behaviour with Wind Charges / TRIGGER_BLOCK.
+     *
+     * We therefore disable the generic explosion loot path.
+     *
+     * Our onBlockExploded() method below is the ONLY place where
+     * destructive explosions create cluster drops.
      */
 
     @Override
-    public void wasExploded(
+    public boolean canDropFromExplosion(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            Explosion explosion
+    ) {
+        return false;
+    }
+
+
+    /*
+     * ============================================================
+     * EXPLOSION HANDLING
+     * ============================================================
+     *
+     * NeoForge 21.1.x provides this through IBlockExtension.
+     *
+     * The important property of this callback is that the
+     * BlockEntity can be queried BEFORE we remove the block.
+     *
+     * Wind Charges use TRIGGER_BLOCK.
+     *
+     * TRIGGER_BLOCK:
+     *
+     *     -> do NOT remove the cluster
+     *     -> do NOT drop the cluster
+     *
+     * DESTROY:
+     *
+     *     -> capture BlockEntity data
+     *     -> remove the block
+     *     -> manually drop the desired amount
+     *
+     * DESTROY_WITH_DECAY:
+     *
+     *     -> same handling here
+     *
+     * KEEP:
+     *
+     *     -> nothing happens
+     */
+
+    @Override
+    public void onBlockExploded(
+            BlockState state,
             Level level,
             BlockPos pos,
             Explosion explosion
     ) {
+        Explosion.BlockInteraction interaction =
+                explosion.getBlockInteraction();
+
+        // Only handle explosions that actually destroy blocks.
+        if (interaction != Explosion.BlockInteraction.DESTROY
+                && interaction != Explosion.BlockInteraction.DESTROY_WITH_DECAY) {
+            return;
+        }
+
         if (level.isClientSide()) {
             return;
         }
 
-
-        BlockState state =
-                level.getBlockState(pos);
-
-
         BlockEntity blockEntity =
                 level.getBlockEntity(pos);
 
+        Block flower = null;
 
-        dropClusterFlowers(
+        if (blockEntity instanceof FlowerClusterBlockEntity cluster) {
+            flower = cluster.getFlower();
+        }
+
+        int amount = state.getValue(AMOUNT);
+
+        // Remove the cluster.
+        level.setBlock(
+                pos,
+                Blocks.AIR.defaultBlockState(),
+                Block.UPDATE_ALL
+        );
+
+        if (flower == null) {
+            return;
+        }
+
+        int dropAmount = Math.max(
+                1,
+                (int) Math.floor(amount * 0.5F)
+        );
+
+        popResource(
                 level,
                 pos,
-                state,
-                blockEntity,
-                0.5F
+                new ItemStack(
+                        flower.asItem(),
+                        dropAmount
+                )
         );
     }
-
 
     /*
      * ============================================================
@@ -746,7 +696,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
                     1
             );
         }
-
 
         return super.updateShape(
                 state,
@@ -783,7 +732,6 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             );
         }
 
-
         super.neighborChanged(
                 state,
                 level,
@@ -799,6 +747,11 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
      * ============================================================
      * BLOCK REMOVAL
      * ============================================================
+     *
+     * This is intentionally NOT used for explosions.
+     *
+     * Explosion drops are handled exclusively by
+     * onBlockExploded().
      */
 
     @Override
@@ -815,11 +768,17 @@ public class FlowerClusterBlock extends Block implements EntityBlock {
             boolean isFluidRemoval =
                     !level.getFluidState(pos).isEmpty();
 
-
             boolean isPistonRemoval =
                     isMoving;
 
 
+            /*
+             * Only handle removals that are genuinely caused by
+             * fluid replacement or piston destruction.
+             *
+             * Explosion removal is deliberately NOT handled here,
+             * preventing a second drop.
+             */
             if (isFluidRemoval || isPistonRemoval) {
 
                 BlockEntity blockEntity =

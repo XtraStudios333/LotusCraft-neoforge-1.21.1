@@ -37,7 +37,7 @@ public class WaterGreeneryBlock extends WaterlilyBlock {
     // ------------------------------------------------------------
 
     private static final VoxelShape GREENERY_1 =
-            Block.box(5, 0, 5, 11, 1, 11);
+            Block.box(4, 0, 4, 12, 1, 12);
 
     private static final VoxelShape GREENERY_2 =
             Block.box(2, 0, 2, 14, 1, 14);
